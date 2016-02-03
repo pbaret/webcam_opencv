@@ -4,9 +4,10 @@
 
 int main(int argc, char** argv )
 {
-
+	// Determines which webcam will be read (if several are plugged)
 	int cam_id = 0;
 
+	// init the opencv object that links to the webcam
     cv::VideoCapture capcam;
     capcam.open(cam_id);
     
@@ -18,9 +19,10 @@ int main(int argc, char** argv )
 
     cv::Mat img;
     
-    while (true)
+    // while we read an image from the webcam, we display it
+    while (capcam.read(img))
     {
-    	capcam.read(img);
+    	//capcam.read(img);
     	
     	if (img.empty())
     	{
@@ -29,8 +31,8 @@ int main(int argc, char** argv )
     	}
     	else
     	{
-    		cv::imshow("test", img);
-    		cv::waitKey(200);
+    		cv::imshow("test", img);  // display
+    		cv::waitKey(200);         // refresh every 200 ms
     	}    	
     }
 
